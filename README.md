@@ -18,7 +18,7 @@ yarn install
 yarn run dev
 ```
 
-### Endpoitns
+### Endpoints
 `
 /health - returns 200 'Ok'
 `
