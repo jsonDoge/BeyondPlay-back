@@ -7,6 +7,7 @@ Simple back-end using GraphQL stitching
 Expected values:
 
   - SERVER_PORT
+  - REDIS_URL
 
 ### Run
 
