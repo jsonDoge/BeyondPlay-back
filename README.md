@@ -2,13 +2,13 @@
 
 Simple back-end using GraphQl stitching 
 
-## ENV
+### ENV
 
 Expected values:
 
   - SERVER_PORT
 
-## Run
+### Run
 
 Development server:
 
@@ -17,3 +17,8 @@ yarn install
 
 yarn run dev
 ```
+
+### Endpoitns
+`
+/health - returns 200 'Ok'
+`
