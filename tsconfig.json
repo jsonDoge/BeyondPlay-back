@@ -22,5 +22,8 @@
   },
   "include": [
     "./src/**/*.ts",
+    "./test/**/*.ts",
+    "./jest.config.ts",
+    "./jest.setup.redis-mock.ts",
   ]
 }

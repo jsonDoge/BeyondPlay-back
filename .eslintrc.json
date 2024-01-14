@@ -19,15 +19,34 @@
   },
   "env": {
     "node": true,
-    "es2021": true
+    "es2021": true,
+    "jest/globals": true
   },
+  "overrides": [
+    {
+      "files": [
+        "test/**"
+      ],
+      "plugins": [
+        "jest"
+      ],
+      "extends": [
+        "plugin:jest/recommended"
+      ],
+      "rules": {
+        "jest/prefer-expect-assertions": "off",
+        "jest/expect-expect": "off"
+      }
+    }
+  ],
   "parserOptions": {
     "project": [
       "./tsconfig.json"
     ]
   },
   "plugins": [
-    "import"
+    "import",
+    "jest"
   ],
   "rules": {
     "quotes": [
