@@ -19,6 +19,12 @@ yarn install
 yarn run dev
 ```
 
+Tests:
+
+```bash
+yarn test
+```
+
 ### Endpoints
 `
 /health - returns 200 'Ok'
