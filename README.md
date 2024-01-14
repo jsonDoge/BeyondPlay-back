@@ -1,6 +1,6 @@
 # BeyondPlay back
 
-Simple back-end using GraphQl stitching 
+Simple back-end using GraphQL stitching 
 
 ### ENV
 
