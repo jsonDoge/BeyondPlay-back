@@ -10,11 +10,14 @@
     "dev": "nodemon --exec 'ts-node --project tsconfig.json ./src/index.ts' --watch ./src -e ts"
   },
   "dependencies": {
+    "@apollo/server": "^4.10.0",
     "axios": "^1.4.0",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "graphql": "^16.8.1",
+    "redis": "^4.6.12"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
