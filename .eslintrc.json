@@ -1,0 +1,74 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "airbnb-typescript/base",
+    "plugin:import/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [
+        ".ts"
+      ]
+    },
+    "import/resolver": {
+      "typescript": {
+        "project": "tsconfig.json"
+      }
+    }
+  },
+  "env": {
+    "node": true,
+    "es2021": true
+  },
+  "parserOptions": {
+    "project": [
+      "./tsconfig.json"
+    ]
+  },
+  "plugins": [
+    "import"
+  ],
+  "rules": {
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "no-shadow": "off",
+    "dot-notation": "off",
+    "no-alert": "warn",
+    "no-await-in-loop": "off",
+    "no-native-reassign": "warn",
+    "no-console": "off",
+    "consistent-return": "off",
+    "prefer-arrow-callback": "off",
+    "func-names": "off",
+    "no-underscore-dangle": "error",
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "require-atomic-updates": "off",
+    "no-extra-semi": "error",
+    "semi": [
+      "error",
+      "always"
+    ],
+    "semi-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    "semi-style": [
+      "error",
+      "last"
+    ],
+    "no-continue": "off",
+    "eol-last": [
+      "error",
+      "never"
+    ]
+  }
+}
