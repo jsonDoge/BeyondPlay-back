@@ -4,10 +4,7 @@ import { getRedisClient } from '../services/redisClient';
 
 const healthRouter = Router();
 
-healthRouter.get('/health', async function (
-  req: Request,
-  res: Response,
-) {
+healthRouter.get('/health', async function (req: Request, res: Response) {
   // TODO: temporary logging for proof of work
   const redisClient = await getRedisClient();
 

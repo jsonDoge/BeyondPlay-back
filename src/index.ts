@@ -1,4 +1,3 @@
-
 import { config } from 'dotenv';
 import cors from 'cors';
 import express, { NextFunction, Request, Response } from 'express';
@@ -13,7 +12,9 @@ import { mergedGQLSchema } from './schema';
 import { resolvers } from './resolvers';
 
 async function bootstrap() {
-  if (!process.env.SERVER_PORT) { throw new Error('Please define port'); }
+  if (!process.env.SERVER_PORT) {
+    throw new Error('Please define port');
+  }
 
   const port = process.env.SERVER_PORT;
 

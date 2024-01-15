@@ -1,13 +1,13 @@
 # BeyondPlay back
 
-Simple back-end using GraphQL stitching 
+Simple back-end using GraphQL stitching
 
 ### ENV
 
 Expected values:
 
-  - SERVER_PORT
-  - REDIS_URL
+- SERVER_PORT
+- REDIS_URL
 
 ### Run
 
@@ -26,6 +26,5 @@ yarn test
 ```
 
 ### Endpoints
-`
-/health - returns 200 'Ok'
-`
+
+`/health - returns 200 'Ok'`
