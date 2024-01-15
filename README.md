@@ -27,4 +27,6 @@ yarn test
 
 ### Endpoints
 
+Default port :8080
+
 `/health - returns 200 'Ok'`
