@@ -13,13 +13,13 @@ const getRedisClient = async () => {
     return redisClient;
   }
 
-  redisClient = await createClient({ url: env.REDIS_URL }).on('error', (error) => {
-    console.error('Redis Client Error', error);
-  }).connect();
+  redisClient = await createClient({ url: env.REDIS_URL })
+    .on('error', (error) => {
+      console.error('Redis Client Error', error);
+    })
+    .connect();
 
   return redisClient;
 };
 
-export {
-  getRedisClient,
-};
+export { getRedisClient };
