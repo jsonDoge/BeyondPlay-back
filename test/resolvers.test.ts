@@ -7,13 +7,13 @@ import { ApolloServer } from '@apollo/server';
 
 config({ path: path.resolve(__dirname, '../.env.test') });
 
-import { mergedGQLSchema } from '../src/schema';
+import { logsGQLschema } from '../src/schema/log';
 import { resolvers } from '../src/resolvers';
 
 describe('Logs', () => {
   it('returns empty logs', async () => {
     const testServer = new ApolloServer({
-      typeDefs: mergedGQLSchema,
+      typeDefs: logsGQLschema,
       resolvers,
     });
 
