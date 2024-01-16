@@ -1,4 +1,3 @@
-
 interface FakeRedis {
   createClient: () => FakeRedis;
   on: () => FakeRedis;
@@ -10,17 +9,23 @@ interface FakeRedis {
 }
 
 class Client implements FakeRedis {
-  w: { storage: any; };
+  w: { storage: any };
 
   constructor() {
     this.w = { storage: {} };
   }
 
-  createClient() { return this; }
+  createClient() {
+    return this;
+  }
 
-  on() { return this; }
+  on() {
+    return this;
+  }
 
-  connect() { return this; }
+  connect() {
+    return this;
+  }
 
   lPush(key: string, value: string) {
     if (!this.w.storage[key]) {
@@ -46,9 +51,6 @@ class Client implements FakeRedis {
   }
 }
 
-jest.mock(
-  'redis',
-  () => ({
-    createClient: () => new Client(),
-  }),
-);
+jest.mock('redis', () => ({
+  createClient: () => new Client(),
+}));
