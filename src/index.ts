@@ -8,6 +8,7 @@ import { expressMiddleware } from '@apollo/server/express4';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { introspectSchema, wrapSchema } from '@graphql-tools/wrap';
 import { transformSchemaFederation } from 'graphql-transform-federation';
+import { AsyncExecutor } from '@graphql-tools/delegate';
 
 config();
 
@@ -26,8 +27,8 @@ async function bootstrap() {
 
   const app = express();
 
-  const countrySchema = await introspectSchema(countryExecutor);
-  const liftSchema = await introspectSchema(liftExecutor);
+  const countrySchema = await introspectSchema(countryExecutor as AsyncExecutor);
+  const liftSchema = await introspectSchema(liftExecutor as AsyncExecutor);
 
   const gateway = new ApolloGateway({
     supergraphSdl: new IntrospectAndCompose({
@@ -39,7 +40,7 @@ async function bootstrap() {
     buildService: ({ url }) => {
       if (url === 'https://countries.trevorblades.com') {
         return new LocalGraphQLDataSource(
-          transformSchemaFederation(wrapSchema({ schema: countrySchema, executor: countryExecutor }), {
+          transformSchemaFederation(wrapSchema({ schema: countrySchema, executor: countryExecutor as AsyncExecutor }), {
             Query: { extend: true },
           }),
         );
@@ -47,7 +48,7 @@ async function bootstrap() {
 
       if (url === 'https://snowtooth.moonhighway.com') {
         return new LocalGraphQLDataSource(
-          transformSchemaFederation(wrapSchema({ schema: liftSchema, executor: liftExecutor }), {
+          transformSchemaFederation(wrapSchema({ schema: liftSchema, executor: liftExecutor as AsyncExecutor }), {
             Query: { extend: true },
           }),
         );
