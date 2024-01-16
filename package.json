@@ -11,15 +11,20 @@
     "test": "jest"
   },
   "dependencies": {
+    "@apollo/federation": "0.20.6",
+    "@apollo/gateway": "^2.6.3",
     "@apollo/server": "^4.10.0",
     "@graphql-tools/executor-http": "^1.0.7",
-    "@graphql-tools/stitch": "^9.0.3",
+    "@graphql-tools/schema": "^10.0.2",
+    "@graphql-tools/wrap": "^6.0.8",
+    "apollo-graphql": "^0.9.7",
     "axios": "^1.4.0",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "graphql": "^16.8.1",
+    "graphql-transform-federation": "^2.2.0",
     "redis": "^4.6.12"
   },
   "devDependencies": {
