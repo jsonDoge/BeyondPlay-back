@@ -2,14 +2,13 @@
   "extends": [
     "eslint:recommended",
     "airbnb-typescript/base",
-    "plugin:import/recommended"
+    "plugin:import/recommended",
+    "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "settings": {
     "import/parsers": {
-      "@typescript-eslint/parser": [
-        ".ts"
-      ]
+      "@typescript-eslint/parser": [".ts"]
     },
     "import/resolver": {
       "typescript": {
@@ -24,15 +23,9 @@
   },
   "overrides": [
     {
-      "files": [
-        "test/**"
-      ],
-      "plugins": [
-        "jest"
-      ],
-      "extends": [
-        "plugin:jest/recommended"
-      ],
+      "files": ["test/**"],
+      "plugins": ["jest"],
+      "extends": ["plugin:jest/recommended"],
       "rules": {
         "jest/prefer-expect-assertions": "off",
         "jest/expect-expect": "off"
@@ -40,19 +33,11 @@
     }
   ],
   "parserOptions": {
-    "project": [
-      "./tsconfig.json"
-    ]
+    "project": ["./tsconfig.json"]
   },
-  "plugins": [
-    "import",
-    "jest"
-  ],
+  "plugins": ["prettier", "import", "jest"],
   "rules": {
-    "quotes": [
-      "error",
-      "single"
-    ],
+    "quotes": ["error", "single"],
     "no-shadow": "off",
     "dot-notation": "off",
     "no-alert": "warn",
@@ -63,16 +48,10 @@
     "prefer-arrow-callback": "off",
     "func-names": "off",
     "no-underscore-dangle": "error",
-    "linebreak-style": [
-      "error",
-      "unix"
-    ],
+    "linebreak-style": ["error", "unix"],
     "require-atomic-updates": "off",
     "no-extra-semi": "error",
-    "semi": [
-      "error",
-      "always"
-    ],
+    "semi": ["error", "always"],
     "semi-spacing": [
       "error",
       {
@@ -80,14 +59,7 @@
         "after": true
       }
     ],
-    "semi-style": [
-      "error",
-      "last"
-    ],
-    "no-continue": "off",
-    "eol-last": [
-      "error",
-      "never"
-    ]
+    "semi-style": ["error", "last"],
+    "no-continue": "off"
   }
 }
