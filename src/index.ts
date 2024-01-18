@@ -1,5 +1,7 @@
 import { config } from 'dotenv';
 import cors from 'cors';
+import jwt from 'jsonwebtoken';
+
 import express, { NextFunction, Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import { ApolloServer } from '@apollo/server';
@@ -16,11 +18,16 @@ import { healthRouter } from './routes/health';
 import { resolvers } from './resolvers';
 import { countryExecutor } from './executors/country';
 import { liftExecutor } from './executors/lift';
-import { logsGQLschema } from './schema/log';
+import { GraphQLError } from 'graphql';
+import { mergedSchema } from './schema';
 
 async function bootstrap() {
   if (!process.env.SERVER_PORT) {
     throw new Error('Please define port');
+  }
+
+  if (!process.env.JWT_SECRET || !process.env.USERNAME || !process.env.PASSWORD) {
+    throw new Error('Invalid server configuration');
   }
 
   const port = process.env.SERVER_PORT;
@@ -59,20 +66,53 @@ async function bootstrap() {
   });
 
   const localSchema = makeExecutableSchema({
-    typeDefs: logsGQLschema,
+    typeDefs: mergedSchema,
     resolvers,
   });
 
-  const apolloGateway = new ApolloServer({ gateway });
+  const apolloGateway = new ApolloServer({
+    gateway,
+  });
   await apolloGateway.start();
 
-  const apolloServer = new ApolloServer({ schema: localSchema });
+  const apolloServer = new ApolloServer({
+    schema: localSchema,
+  });
   await apolloServer.start();
 
   app.use(cors());
   app.use(bodyParser.json({ limit: '50mb' }));
 
-  app.use('/graphql-gateway', expressMiddleware(apolloGateway));
+  app.use(
+    '/graphql-gateway',
+    expressMiddleware(apolloGateway, {
+      context: async ({ req }: { req: Request }) => {
+        const token = req.get('Authorization') || '';
+
+        if (!token) {
+          throw new GraphQLError('User is not authenticated', {
+            extensions: {
+              code: 'UNAUTHENTICATED',
+              http: { status: 401 },
+            },
+          });
+        }
+
+        try {
+          jwt.verify(token, process.env.JWT_SECRET as string);
+        } catch (e) {
+          throw new GraphQLError('User failed authentication', {
+            extensions: {
+              code: 'UNAUTHENTICATED',
+              http: { status: 401 },
+            },
+          });
+        }
+
+        return req;
+      },
+    }),
+  );
   app.use('/graphql', expressMiddleware(apolloServer));
   app.use('/', healthRouter);
 

@@ -8,6 +8,9 @@ Expected values:
 
 - SERVER_PORT
 - REDIS_URL
+- USERNAME
+- PASSWORD
+- JWT_SECRET
 
 ### Run
 
@@ -49,9 +52,16 @@ Gateway proxy
 Supports:
   "query": "{ logs { userId, endpoint } }" - returns all logs (from redis)
   "query": "{ lastLog { userId, endpoint } }" - returns last log (from redis)
+  {
+    "query": "mutation Login($username: String!, $password: String!) { login(username: $username, password: $password) { token } } ",
+	  "variables": {
+		  "username": "<username here>",
+		  "password": "<password here>"
+	  }
+  }
 ```
 
-Gateway proxy (TODO: actual stitching to be added)
+Gateway proxy - all queries to here requires authentication (proof of concept)
 
 ```
 /graphql-gateway
