@@ -59,6 +59,9 @@ Gateway proxy (TODO: actual stitching to be added)
 Supports:
   "query": "{ countries { code name emoji } }" - returns country information from public GraphQL API "https://countries.trevorblades.com"
   "query": "{ allLifts { id name capacity status } }" - returns ski resort lift information from public GraphQL API https://snowtooth.moonhighway.com
+
+  <!-- basic stitching query -->
+  "query": "{ allLifts { id name capacity status } countries { code name emoji } }" - returns both lifts and countries
 ```
 
 ### TODO
